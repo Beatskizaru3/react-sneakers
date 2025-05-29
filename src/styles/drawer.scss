@@ -6,7 +6,8 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    &-slide{
+
+    &__slide{
         position: absolute;   
         width: 385px;
         height: 100%;
@@ -15,11 +16,122 @@
         box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
         padding: 30px;
 
-
+        display: flex;
+        flex-direction: column;
     }   
 
     &__title{
         margin: 0;
         font-style: 24px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        img{
+            cursor: pointer;
+        }
+    }
+
+    &__cart{
+        flex: 1;
+        overflow: auto;
+    }
+
+    &__item{
+        display: flex;
+        align-items: center;
+        border: 1px solid #f3f3f3;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 20px;
+        margin-bottom: 20px;
+        p{
+            font-size: 14px;
+            margin: 0;
+        }
+
+        b{
+            font-size: 13px;
+        }
+
+        &-image{
+            margin-right: 20px;
+            width: 170px;
+            height: 70px;
+            background-size: contain;
+            background-position: 0 -3px;
+            background-repeat: no-repeat;
+        }
+
+        &-body{
+            margin-bottom: 5px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-btn{
+            opacity: 0.5;
+            transition: opacity 0.2s ease-in-out;
+            cursor: pointer;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+
+    &__footer{
+        
+        &-wrapper{
+            margin-bottom: 40px;
+        }
+
+        &-item{
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            div{
+                flex: 1;
+                height: 1px;
+                border-bottom: 1px dashed #dfdfdf;
+                position: relative;
+                top: -4px;
+                margin: 0 7px;
+            }
+        }
+    }
+
+    &__button{
+        width: 100%;
+        height: 55px;
+        border-radius: 18px;
+        background: #9DD458;
+        border: 0;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+        position: relative;
+        ;
+
+        img{
+            position: absolute;
+            right: 30px;
+            top:20px;
+            transition: transform 0.15s ease-in-out
+        }
+
+        &:hover{
+            background: lighten($color: #9DD458, $amount: 5%);
+
+            img{
+                transform: translateX(5px);
+            }
+        }
+
+        &:active{
+            background: darken($color: #9DD458, $amount: 5%);
+        }
     }
 }
