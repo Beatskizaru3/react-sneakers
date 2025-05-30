@@ -17,23 +17,25 @@
         transition: 0.2s;
         transform: translateY(-5px);
     }
-   &__like{
+}
+
+.card__like{
     position: absolute;
     cursor: pointer;
    }
 
-    &__name{
+    .card__name{
         font-weight: 400;
         font-size: 14px;
     }
 
-    &__info{
+    .card__info{
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    &__inner{
+    .card__inner{
         display: flex;
         flex-direction: column;
         
@@ -49,7 +51,7 @@
         
     }
 
-    &__button{
+    .card__button{
         display: flex;
         align-items: center;
         justify-content: center;
@@ -61,4 +63,3 @@
         width: 32px;
         cursor: pointer;
     }
-}

@@ -30,6 +30,8 @@ function App() {
               title={item.title}
               price={item.price}
               imageUrl={item.imageUrl}
+              onClickPlus={()=>console.log('clickOnPlus')}
+              onClickFav={()=>console.log('clickOnFav')}
             />
           ))}
         </div>
