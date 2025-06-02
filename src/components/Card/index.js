@@ -3,24 +3,27 @@ import React from 'react';
 
 console.log(styles);
 
-function Card(props) {
-    const [isAdded, setIsAdded] = React.useState(false);
+function Card({ onFav, onPlus, title, imageUrl, price }) {
     
-    const onClickPlus = () =>{
-      setIsAdded(!isAdded);
-    }
+  const [isAdded, setIsAdded] = React.useState(false);
+  const onClickPlus = () => {
+    onPlus({title, imageUrl, price})
+    setIsAdded(!isAdded);
+  };
+  
+    
 
     return(
         <div className={styles.card}>
-            <div className={styles.card__like} onClick={props.onClickFav}>
+            <div className={styles.card__like} onClick={()=>{console.log('clickFav')}}>
               <img src="/img/heart-unliked.svg" alt="heart-unliked" />
             </div>
-            <img width={133} height={112} src={props.imageUrl} alt="" className={styles.card__image} />
-            <h5 className={styles.card__name}>{props.title}</h5>
+            <img width={133} height={112} src={imageUrl} alt="" className={styles.card__image} />
+            <h5 className={styles.card__name}>{title}</h5>
             <div className={styles.card__info}>
               <div className={styles.card__inner}>
                 <p>Цена:</p>
-                <b>{props.price} руб.</b>
+                <b>{price} руб.</b>
               </div>
               
                 <img className={styles.card_plus} onClick={onClickPlus} src={isAdded ?  "/img/isAdd.svg" : "/img/notAdd.svg"} alt=""></img>

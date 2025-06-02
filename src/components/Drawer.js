@@ -1,30 +1,24 @@
-function Drawer(){
+function Drawer({onCloseCart, items =[]}){
     return(
-        <div style={{display: 'none'}}className="drawer">
+        <div className="drawer">
         <div className="drawer__slide">
           <h2 className="drawer__title">Корзина
-          <img src="/img/btn-remove.svg" alt="" className="drawer__item-btn" />
+          <img onClick={onCloseCart} src="/img/btn-remove.svg" alt="" className="drawer__item-btn" />
           </h2>
           
           <div className="drawer__cart">
-            <div className="drawer__item">
+            {items.map((obj)=>(
+              <div className="drawer__item">
           
-              <div style={{backgroundImage: 'url(/img/sneakers/1.png)'}} className="drawer__item-image"></div>
+              <div style={{backgroundImage: `url(${obj.imageUrl})`}} className="drawer__item-image"></div>
                 <div className="drawer__item-body">
-                  <p>Мужские Кроссовки Nike Blazer Mid Suede</p>
-                  <b>12 999 руб.</b>
+                  <p>{obj.title}</p>
+                  <b>{obj.price} руб.</b>
                 </div>
                 <img src="/img/btn-remove.svg" alt="" className="drawer__item-btn" />
             </div>
-            <div className="drawer__item">
-              
-              <div style={{backgroundImage: 'url(/img/sneakers/1.png)'}} className="drawer__item-image"></div>
-                <div className="drawer__item-body">
-                  <p>Мужские Кроссовки Nike Blazer Mid Suede</p>
-                  <b>12 999 руб.</b>
-                </div>
-                <img src="/img/btn-remove.svg" alt="" className="drawer__item-btn" />
-            </div>
+            ))}
+            
           </div>
           <div className="drawer__footer">
             <ul className="drawer__footer-wrapper">
