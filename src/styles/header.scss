@@ -9,6 +9,7 @@
       display: flex;
       align-items: center;
       
+      
     }
   
     &__info{
@@ -16,10 +17,12 @@
   
       &-title{
         text-transform: uppercase;
+        text-decoration: none;
       }
 
       p{
         opacity: 0.5;
+        text-decoration: none;
       }
     }
   

@@ -57,6 +57,8 @@ function App() {
     return items.filter(item => item.title.toLowerCase().includes(lowerCaseSearch));
   }
 
+    
+
  function testApp() {
   return (
     <>
@@ -70,9 +72,9 @@ function App() {
     <div className="wrapper">
       {cartOpened ? <Drawer items={cartItems} onCloseCart={()=> setCartOpened(false)} onRemove={onRemoveItem}/> : null}
       
-      <Header onClickCart={() => setCartOpened(true)}  />
+      <Header onClickCart={() => setCartOpened(true)}/>
       <Routes>
-        <Route path="/test" element={testApp()}/>
+        <Route path="/favorites" element={testApp()}/>
       </Routes>
       
       
