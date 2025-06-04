@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Header(props){
     return(
         <header className="header">
@@ -13,7 +15,13 @@ function Header(props){
                     <img width={18} height={18} src='/img/cart.svg' alt=''/>
                     <span>1205 руб.</span>
                 </li>
-                    <li className="header__right-item">
+                <Link>
+                <li className="header__right-item">
+                    <img width={18} height={16} src="/img/favorite.svg" alt=''/>
+                </li>
+                </Link>
+                
+                <li className="header__right-item">
                     <img width={18} height={18} src='/img/user.svg' alt=''/>
                 </li>
             </ul>

@@ -43,7 +43,7 @@ function Drawer({onCloseCart, onRemove, items =[]}){
             <img src="/img/cart-empty.png" className="drawer__cart-empty-img" width={120} height={120}></img>
             <h2>Корзина пустая</h2>
             <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-            <button className="drawer__cart-green-button">
+            <button  onClick={onCloseCart} className="drawer__cart-green-button">
               <img width={13} height={13} src="/img/arrow-left.svg"></img> Вернуться назад
             </button>
           </div>)
