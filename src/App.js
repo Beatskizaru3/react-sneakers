@@ -1,10 +1,11 @@
-import Card from './components/Card';
+
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 import React from 'react';
 import axios from 'axios';
 import { Route, Routes } from "react-router-dom"
-
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 
 
 
@@ -24,6 +25,10 @@ function App() {
     axios.get('https://683d5d5c199a0039e9e524fa.mockapi.io/cart').then(res => {
       setCartItems(res.data);
     })
+
+    axios.get('https://683ffb395b39a8039a565940.mockapi.io/Favorites').then(res =>{
+      setFavorites(res.data);
+    })
   }, [])
 
   
@@ -34,9 +39,19 @@ function App() {
     
   }
 
-  const onAddToFav = (obj) =>{
-    axios.post('https://683ffb395b39a8039a565940.mockapi.io/Favorites', obj);
-    setFavorites((prev) => [...prev, obj]);
+  const onAddToFav = async (obj) =>{
+    try {
+      if(favorites.find((favObj)=> favObj.id === obj.id)){
+        axios.delete(`https://683ffb395b39a8039a565940.mockapi.io/Favorites/${obj.id}`);
+      }
+      else{
+        const { data } = await axios.post('https://683ffb395b39a8039a565940.mockapi.io/Favorites', obj);
+        setFavorites((prev) => [...prev, data]);
+      }
+    } catch (error) {
+      alert('Не удалось добавить в фавориты');
+    }
+    
     
   }
 
@@ -57,53 +72,29 @@ function App() {
     return items.filter(item => item.title.toLowerCase().includes(lowerCaseSearch));
   }
 
-    
-
- function testApp() {
-  return (
-    <>
-    Testinfo
-    </>
-  )
- }
-
   return (
     
     <div className="wrapper">
       {cartOpened ? <Drawer items={cartItems} onCloseCart={()=> setCartOpened(false)} onRemove={onRemoveItem}/> : null}
       
       <Header onClickCart={() => setCartOpened(true)}/>
+
       <Routes>
-        <Route path="/favorites" element={testApp()}/>
+          <Route path="/" element={
+            <Home items={items} 
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            onChangeSearchInput={onChangeSearchInput}
+            onAddToFav={onAddToFav}
+            onAddToCart={onAddToCart}
+            searchByName={searchByName}/>
+          }/>
+          <Route path="/favorites" element={
+            <Favorites items={favorites} onAddToFav={onAddToFav}/>
+          }/>
       </Routes>
       
-      
-        
-      
-      
-
-      <div className="main">
-        <div className="main__top">
-          <h1 className="main__top-title">{searchValue ? `Поиск по запросу "${searchValue}"` : 'Все кроссовки'}</h1>
-          <div className="main__top-search">
-            <img className="main__top-search-logo" src="/img/search.svg" alt="Search" />
-            {searchValue && <img onClick={()=>{setSearchValue("")}} src="/img/btn-remove.svg" alt="Clear" className="main__top-search-close-btn" />}
-            <input onChange={onChangeSearchInput} value={searchValue} className='main__top-search-input' placeholder="Поиск..."></input>
-          </div>
-        </div>
-        <div className="main__sneakers">
-          {searchByName(items, searchValue).map((item, index)=>(
-            <Card
-              key={index}
-              title={item.title}
-              price={item.price}
-              imageUrl={item.imageUrl}
-              onPlus={(obj)=> onAddToCart(obj)}
-              onFav={(obj)=> onAddToFav(obj)}
-            />
-          ))}
-        </div>
-      </div>
+       
     </div>
   );
 }

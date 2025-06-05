@@ -3,10 +3,10 @@ import React from 'react';
 
 console.log(styles);
 
-function Card({ onFav, onPlus, title, imageUrl, price }) {
+function Card({ id, onFav, onPlus, title, imageUrl, price, favorited = false }) {
     
   const [isAdded, setIsAdded] = React.useState(false);
-  const [isFavorite, setIsFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(favorited);
 
   const onClickPlus = () => {
     onPlus({title, imageUrl, price})
@@ -14,7 +14,7 @@ function Card({ onFav, onPlus, title, imageUrl, price }) {
   };
   
   const onClickFav = () => {
-    onFav({title, imageUrl, price})
+    onFav({id, title, imageUrl, price})
     setIsFavorite(!isFavorite)
   }
 
