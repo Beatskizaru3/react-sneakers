@@ -10,7 +10,7 @@ function Drawer({onCloseCart, onRemove, items =[]}){
           (<>
             <div className="drawer__cart">
             {items.map((obj)=>(
-              <div className="drawer__item">
+              <div key={obj.id} className="drawer__item">
           
               <div style={{backgroundImage: `url(${obj.imageUrl})`}} className="drawer__item-image"></div>
                 <div className="drawer__item-body">

@@ -3,13 +3,13 @@ import React from 'react';
 
 console.log(styles);
 
-function Card({ id, onFav, onPlus, title, imageUrl, price, favorited = false }) {
+function Card({ id, onFav, onPlus, title, imageUrl, price, favorited = false, added = false }) {
     
-  const [isAdded, setIsAdded] = React.useState(false);
+  const [isAdded, setIsAdded] = React.useState(added);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
 
   const onClickPlus = () => {
-    onPlus({title, imageUrl, price})
+    onPlus({id, title, imageUrl, price})
     setIsAdded(!isAdded);
   };
   
